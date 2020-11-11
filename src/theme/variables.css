@@ -35,8 +35,8 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-success-shade: #28ba62;
   --ion-color-success-tint: #42d77d;
 
-  /** warning **/
-  --ion-color-warning: #ffc409;
+  /** warning #FFC409 **/
+  --ion-color-warning: #FFC107;
   --ion-color-warning-rgb: 255, 196, 9;
   --ion-color-warning-contrast: #000000;
   --ion-color-warning-contrast-rgb: 0, 0, 0;
@@ -74,6 +74,9 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /** custom **/
+  --ion-color-pocketsong: #FFC107;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -145,6 +148,9 @@ http://ionicframework.com/docs/theming/ */
     --ion-color-light-contrast-rgb: 255,255,255;
     --ion-color-light-shade: #1e2023;
     --ion-color-light-tint: #383a3e;
+
+    /** custom **/
+    --ion-color-pocketsong: #FFC107;
   }
 
   /*
@@ -179,6 +185,9 @@ http://ionicframework.com/docs/theming/ */
     --ion-color-step-900: #e6e6e6;
     --ion-color-step-950: #f2f2f2;
 
+    /** custom **/
+    --ion-color-pocketsong: #FFC107;
+
     --ion-toolbar-background: #0d0d0d;
 
     --ion-item-background: #000000;
@@ -193,8 +202,8 @@ http://ionicframework.com/docs/theming/ */
    */
 
   .md body {
-    --ion-background-color: #121212;
-    --ion-background-color-rgb: 18,18,18;
+    --ion-background-color: #607D8B;
+    --ion-background-color-rgb: 96,125,139;
 
     --ion-text-color: #ffffff;
     --ion-text-color-rgb: 255,255,255;
@@ -221,12 +230,59 @@ http://ionicframework.com/docs/theming/ */
     --ion-color-step-900: #e7e7e7;
     --ion-color-step-950: #f3f3f3;
 
-    --ion-item-background: #1e1e1e;
+    /** custom **/
+    --ion-color-pocketsong: #FFC107;
 
-    --ion-toolbar-background: #1f1f1f;
+    --ion-item-background: #607D8B;
 
-    --ion-tab-bar-background: #1f1f1f;
+    --ion-toolbar-background: #455A64;
+
+    --ion-tab-bar-background: #455A64;
+    --ion-tab-bar-color: #FFFFFF;
+    --ion-tab-bar-color-selected: #FFC107;
 
     --ion-card-background: #1e1e1e;
+
+    --ion-button-background: #607D8B;
   }
+
+  .footer-label {
+    color: #FFFFFF;
+  }
+
+  .songs-item-icon {
+    color: #FFC107;
+    transform: scale(1.3, 1.3);
+  }
+
+  .custom-alert.alert-head {
+    background-color: #455A64;
+  }
+
+  .custom-alert.alert-head h2 {
+    color: #FFC107;
+  }
+
+  .custom-alert.alert-message {
+    color: #FFFFFF;
+    margin-top: 7%;
+    max-height: 90%;
+    padding: 5%;
+    padding-bottom: 7%;
+    white-space: pre-line;
+  }
+
+  .alert-button-group {
+    background-color: #455A64;
+  }
+
+  .alert-button-group button {
+    color: #FFC107;
+    font-weight: bold;
+  }
+
+  .alert-wrapper {
+    max-width: 90%;
+  }
+
 }

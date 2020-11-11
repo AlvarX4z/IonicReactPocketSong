@@ -1,0 +1,22 @@
+#home-logo {
+    padding-top: 20px;
+}
+
+#home-header {
+    font-size: 3em;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+p {
+    line-height: 0.6em;
+}
+
+#col-text {
+    text-align: center;
+}
+
+#footer-text {
+    font-size: small;
+    text-align: center;
+}

@@ -1,24 +1,61 @@
 import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import { 
+  IonContent, 
+  IonHeader, 
+  IonPage, 
+  IonTitle, 
+  IonToolbar,
+  IonList,
+  IonItem,
+  IonIcon,
+  IonLabel
+} from '@ionic/react';
+import { musicalNote } from 'ionicons/icons';
 import './Tab2.css';
 
 const Tab2: React.FC = () => {
   return (
     <IonPage>
+
+      {/* Header */}
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 2</IonTitle>
+          <IonTitle>Songs</IonTitle>
         </IonToolbar>
       </IonHeader>
+
+      {/* Songs Content */}
       <IonContent fullscreen>
+
+        {/* For iOS */}
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Tab 2</IonTitle>
+            <IonTitle size="large">Songs</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Tab 2 page" />
+
+        <IonList>
+
+          <IonItem className="songs-item" lines="full">
+            <IonIcon className="songs-item-icon" icon={musicalNote} size="large" slot="start" />
+            <IonLabel>
+              <h1>Song Name</h1> 
+              <h2>Song Artist</h2>
+            </IonLabel>
+          </IonItem>
+
+          <IonItem className="songs-item" lines="full">
+            <IonIcon className="songs-item-icon" icon={musicalNote} size="large" slot="start" /> 
+            <IonLabel>
+              <h1>Song Name</h1> 
+              <h2>Song Artist</h2>
+            </IonLabel>
+          </IonItem>
+
+        </IonList>
+
       </IonContent>
+
     </IonPage>
   );
 };
