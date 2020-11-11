@@ -1,0 +1,7 @@
+{
+  "name": "IoReactPocketSong",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
