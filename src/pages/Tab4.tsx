@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   IonContent, 
   IonHeader, 
@@ -12,35 +12,50 @@ import {
   IonLabel,
   IonInput,
   IonButton,
-  IonIcon 
+  IonIcon,
+  IonAlert 
 } from '@ionic/react';
 import { search } from 'ionicons/icons';
 import axios from 'axios';
 import './Tab4.css';
+import { Song } from '../classes/song';
 
 const message: string = "Looking for a song's lyrics?";
 const searchButton: string = "Search";
 
 const baseUrl: string = "https://orion.apiseeds.com/api/music/lyric/";
-let songName: React.RefObject<HTMLIonInputElement> = React.createRef();
-let songArtist: React.RefObject<HTMLIonInputElement> = React.createRef();
+let songNameInput: React.RefObject<HTMLIonInputElement> = React.createRef();
+let songArtistInput: React.RefObject<HTMLIonInputElement> = React.createRef();
 const clientKey: string = "?apikey=CXS5RvuDuOIy93tsBpSkthRS9CcxjeE5GDYNuCOz0pOAc9v70ImcUjg5EG5d1vHX"
 
-let state = {
-  songs: []
-}
-
-const buildURL = () => {
-
-  let finalUrl: string = baseUrl + songArtist.current?.value + "/" + songName.current?.value + clientKey;
-  axios.get(finalUrl).then(res => {
-    const songs = res.data;
-    state.songs = songs;
-  });
-  // console.log(state.songs.map(song => song.result.track.name));
-}
-
 const Tab4: React.FC = () => {
+
+  const [state, setState] = useState({
+    artist: "",
+    song: "",
+    lyrics: "",
+    isOpen: false
+  });
+
+  const fetchLyrics = async () => {
+  
+    let finalUrl: string = baseUrl + songArtistInput.current?.value + "/" + songNameInput.current?.value + clientKey;
+    axios.get(finalUrl).then(res => {
+
+      let song: Song = res.data;
+      state.artist = (song.result?.artist?.name === undefined) ? "Artist Not Found" : song.result?.artist?.name;
+      state.song = (song.result?.track?.name === undefined) ? "Song Not Found" : song.result?.track?.name;
+      state.lyrics = (song.result?.track?.text === undefined) ? "Lyrics Not Found" : song.result?.track?.text;
+      showCustomAlert();
+      
+    });
+
+  }
+
+  const showCustomAlert = async () => {
+    setState({ ...state, isOpen: true });
+  }
+
   return (
     <IonPage>
 
@@ -75,7 +90,7 @@ const Tab4: React.FC = () => {
           <IonCol size="10" offset="1">
             <IonItem>
               <IonLabel class="search-label" position="floating" color="warning">Song's Name</IonLabel>
-              <IonInput type="text" required ref={songName}></IonInput>
+              <IonInput type="text" required ref={songNameInput}></IonInput>
             </IonItem>
           </IonCol>
         </IonRow>
@@ -85,7 +100,7 @@ const Tab4: React.FC = () => {
           <IonCol size="10" offset="1">
             <IonItem>
               <IonLabel class="search-label" position="floating" color="warning">Song's Artist</IonLabel>
-              <IonInput type="text" required ref={songArtist}></IonInput>
+              <IonInput type="text" required ref={songArtistInput}></IonInput>
             </IonItem>
           </IonCol>
         </IonRow>
@@ -93,13 +108,22 @@ const Tab4: React.FC = () => {
         {/* 4th Row - Search Button */}
         <IonRow>
           <IonCol>
-            <IonButton className="player-button" shape="round" size="large" onClick={buildURL}>
+            <IonButton className="player-button" shape="round" size="large" onClick={fetchLyrics}>
               <IonIcon icon={search} slot="start" />{searchButton}
             </IonButton>
           </IonCol>
         </IonRow>
 
       </IonGrid>
+
+      <IonAlert
+        isOpen={state.isOpen}
+        onDidDismiss={() => setState({ ...state, isOpen: false })}
+        header={state.artist + " - " + state.song}
+        message={state.lyrics}
+        buttons={['Back']}
+        cssClass='custom-alert'
+      />
 
     </IonContent>
 
